@@ -6,7 +6,7 @@ Use Ansible core network modules to add SSH keys to existing users on a network 
 Installation:
 
 ```
-ansible-galaxy install ansible-testing.net-ssh-keys
+ansible-galaxy -s https://galaxy-qa.ansible.com install ansible-testing.net-ssh-keys
 ```
 
 Requirements
