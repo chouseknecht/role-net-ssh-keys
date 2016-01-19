@@ -1,0 +1,62 @@
+---
+# tasks file for networking-add-ssh-keys/
+
+- block:  
+      - name: Add ssh keys to nxos device via delegate_to host with password
+        nxos_config:
+            src: config.j2
+            use_ssl: "{{ netkeys_use_ssl }}"
+            username: "{{ netkeys_username }}"
+            password: "{{ netkeys_password }}"
+            transport: "{{ netkeys_transport }}"
+        register: output
+        delegate_to: "{{ netkeys_delegate_to }}"
+        connection: local
+
+      - debug: var=output
+
+  when: netkeys_delegate_to is defined and netkeys_password is defined
+
+- block:
+      - name: Add ssh keys to nxos device via delegate_to host no password
+        nxos_config:
+            src: config.j2
+            use_ssl: "{{ netkeys_use_ssl }}"
+            username: "{{ netkeys_username }}"
+            transport: "{{ netkeys_transport }}"
+        register: output
+        delegate_to: "{{ netkeys_delegate_to }}"
+        connection: local
+ 
+      - debug: var=output
+
+  when: netkeys_delegate_to is defined and netkeys_password is not defined
+
+- block:
+      - name: Add ssh keys to nxos device directly with password
+        nxos_config:
+            src: config.j2
+            use_ssl: "{{ netkeys_use_ssl }}"
+            username: "{{ netkeys_username }}"
+            password: "{{ netkeys_password }}"
+            transport: "{{ netkeys_transport }}"
+        register: output
+        connection: local
+
+      - debug: var=output
+
+  when: netkeys_delegate_to is not defined and netkeys_password is defined
+
+- block:
+      - name: Add ssh keys to nxos device directly no password
+        nxos_config:
+            src: config.j2
+            use_ssl: "{{ netkeys_use_ssl }}"
+            username: "{{ netkeys_username }}"
+            transport: "{{ netkeys_transport }}"
+        register: output
+        connection: local
+
+      - debug: var=output
+
+  when: netkeys_delegate_to is not defined and netkeys_password is not defined

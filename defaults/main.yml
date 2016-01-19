@@ -1,0 +1,8 @@
+---
+# defaults
+netkeys_use_ssl: yes
+netkeys_username: ''
+netkeys_password: ''
+netkeys_transport: cli
+netkeys_delegate_to: ''
+netkeys_keys: []
