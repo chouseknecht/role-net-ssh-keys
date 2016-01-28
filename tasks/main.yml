@@ -5,10 +5,7 @@
       - name: Add ssh keys to nxos device via delegate_to host with password
         nxos_config:
             src: config.j2
-            use_ssl: "{{ netkeys_use_ssl }}"
-            username: "{{ netkeys_username }}"
-            password: "{{ netkeys_password }}"
-            transport: "{{ netkeys_transport }}"
+            provider: "{{ provider }}"
         register: output
         delegate_to: "{{ netkeys_delegate_to }}"
         connection: local
@@ -21,9 +18,7 @@
       - name: Add ssh keys to nxos device via delegate_to host no password
         nxos_config:
             src: config.j2
-            use_ssl: "{{ netkeys_use_ssl }}"
-            username: "{{ netkeys_username }}"
-            transport: "{{ netkeys_transport }}"
+            provider: "{{ provider }}"
         register: output
         delegate_to: "{{ netkeys_delegate_to }}"
         connection: local
@@ -36,10 +31,7 @@
       - name: Add ssh keys to nxos device directly with password
         nxos_config:
             src: config.j2
-            use_ssl: "{{ netkeys_use_ssl }}"
-            username: "{{ netkeys_username }}"
-            password: "{{ netkeys_password }}"
-            transport: "{{ netkeys_transport }}"
+            provider: "{{ provider }}"
         register: output
         connection: local
 
@@ -51,9 +43,7 @@
       - name: Add ssh keys to nxos device directly no password
         nxos_config:
             src: config.j2
-            use_ssl: "{{ netkeys_use_ssl }}"
-            username: "{{ netkeys_username }}"
-            transport: "{{ netkeys_transport }}"
+            provider: "{{ provider }}"
         register: output
         connection: local
 

@@ -1,8 +1,15 @@
 ---
 # defaults
-netkeys_use_ssl: yes
 netkeys_username: ''
 netkeys_password: ''
+netkeys_use_ssl: yes
 netkeys_transport: cli
 netkeys_delegate_to: ''
 netkeys_keys: []
+
+provider:
+    username: "{{ netkeys_username }}"
+    password: "{{ netkeys_password }}" 
+    use_ssl: "{{ netkeys_use_ssl }}"
+    host: "{{ inventory_hostname }}"
+    transport: "{{ netkeys_transport }}"
